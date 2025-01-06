@@ -2,8 +2,9 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-from usuarios.forms import LoginForms, CadastroForms
+from apps.usuarios.forms import LoginForms, CadastroForms
 
 
 def login(request):
@@ -59,6 +60,7 @@ def cadastro(request):
 
     return render(request, 'usuarios/cadastro.html', {'form': form})
 
+@login_required
 def logout(request):
     auth.logout(request)
 
